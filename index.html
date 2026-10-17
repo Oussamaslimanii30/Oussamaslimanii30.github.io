@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Oussama Slimani – Développeur Full-Stack .NET / Angular</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F6F6FB; --surface:#FFFFFF; --ink:#16182B; --muted:#5B5F78; --line:#DCDDEA;
+  --net:#512BD4; --ng:#DD0031; --net-soft:#ECE8FB;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#10111C; --surface:#181A2A; --ink:#EEF0FA; --muted:#A3A7C2; --line:#2B2E47;
+    --net:#9B85F5; --ng:#FF5B7E; --net-soft:#25214A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10111C; --surface:#181A2A; --ink:#EEF0FA; --muted:#A3A7C2; --line:#2B2E47;
+  --net:#9B85F5; --ng:#FF5B7E; --net-soft:#25214A; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Segoe UI",sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--net);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{font:800 20px "Bricolage Grotesque",sans-serif;text-decoration:none}
+nav a{margin-left:22px;text-decoration:none;color:var(--muted);font-weight:500}
+nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding:56px 0 88px}
+.hero h1{font-size:clamp(40px,6.4vw,72px);font-weight:800;letter-spacing:-.02em}
+.hero p.lead{font-size:20px;color:var(--muted);max-width:30em;margin:22px 0 30px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:500;text-decoration:none;border:2px solid var(--ink)}
+.btn.primary{background:var(--net);border-color:var(--net);color:#fff}
+.btn.primary:hover{filter:brightness(1.1)}
+.btn.ghost:hover{background:var(--surface)}
+/* Schéma de la pile technique : le fil conducteur de la page */
+.stack{display:flex;flex-direction:column;gap:0}
+.layer{background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.layer b{font:700 18px "Bricolage Grotesque",sans-serif}
+.layer small{color:var(--muted)}
+.layer.a{border-left:8px solid var(--ng)}
+.layer.b{border-left:8px solid var(--net)}
+.layer.c{border-left:8px solid var(--muted)}
+.link{width:2px;height:22px;background:var(--line);margin-left:36px;position:relative}
+.link::after{content:"JSON / HTTPS";position:absolute;left:14px;top:2px;font-size:12px;color:var(--muted);white-space:nowrap}
+.link.sql::after{content:"Entity Framework Core"}
+section{padding:72px 0;border-top:1px solid var(--line)}
+section h2{font-size:clamp(28px,4vw,40px);font-weight:700;margin-bottom:12px}
+section>.wrap>p.intro{color:var(--muted);max-width:36em;margin:0 0 36px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.facts{list-style:none;margin:0;padding:0}
+.facts li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px}
+.facts span{color:var(--muted)}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.skills div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.skills h3{font-size:20px;margin-bottom:12px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{background:var(--net-soft);color:var(--net);padding:4px 12px;border-radius:99px;font-size:14px;font-weight:500}
+.project{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:32px;margin-bottom:24px}
+.project h3{font-size:28px;margin-bottom:10px}
+.project ul{padding-left:20px;margin:14px 0}
+.status{display:inline-block;font-size:14px;font-weight:500;padding:3px 12px;border-radius:99px;border:1.5px solid var(--ng);color:var(--ng);margin-bottom:14px}
+.mock{border-radius:12px;border:2px solid var(--line);background:var(--bg);padding:14px;min-height:220px}
+.mock .bar{height:10px;width:40%;border-radius:6px;background:var(--line);margin-bottom:14px}
+.mock .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.mock .grid i{display:block;height:74px;border-radius:10px;background:var(--net-soft);position:relative}
+.mock .grid i::after{content:"";position:absolute;left:18%;right:18%;top:34px;height:14px;border:3px solid var(--net);border-radius:10px}
+.project.soon{opacity:.85;border-style:dashed}
+.contact{display:flex;gap:12px;flex-wrap:wrap}
+footer{padding:36px 0;color:var(--muted);font-size:15px;border-top:1px solid var(--line)}
+@media (max-width:760px){
+  .hero,.about,.project{grid-template-columns:1fr}
+  nav a{margin-left:14px}
+  .project{padding:22px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .layer{animation:rise .6s both}
+  .layer.b{animation-delay:.15s}.layer.c{animation-delay:.3s}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#">Oussama Slimani</a>
+    <nav><a href="#profil">Profil</a><a href="#competences">Compétences</a><a href="#projets">Projets</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>Je construis des applications web complètes, de la base de données à l'écran.</h1>
+      <p class="lead">Ingénieur en génie informatique, développeur full-stack .NET et Angular. Je conçois des API propres et des interfaces claires, prêtes à être utilisées.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projets">Voir mes projets</a>
+        <a class="btn ghost" href="#contact">Me contacter</a>
+      </div>
+    </div>
+    <div class="stack" aria-label="Pile technique : Angular, ASP.NET Core, SQL">
+      <div class="layer a"><b>Angular</b><small>Interface</small></div>
+      <div class="link"></div>
+      <div class="layer b"><b>ASP.NET Core</b><small>API REST</small></div>
+      <div class="link sql"></div>
+      <div class="layer c"><b>SQL Server</b><small>Données</small></div>
+    </div>
+  </div>
+</div>
+
+<section id="profil"><div class="wrap">
+  <h2>Profil</h2>
+  <div class="about">
+    <p>Ingénieur en génie informatique, je suis passionné par le développement logiciel et les applications web. Curieux et adaptable, je maîtrise plusieurs technologies full-stack et je m'intéresse aux innovations en intelligence artificielle et à leur intégration dans des solutions concrètes.</p>
+    <ul class="facts">
+      <li><span>Poste</span>Développeur Full-Stack</li>
+      <li><span>Formation</span>Ingénieur en génie informatique</li>
+      <li><span>Pile principale</span>.NET · Angular</li>
+      <li><span>Localisation</span>Oujda, Maroc</li>
+      <li><span>Disponibilité</span>Ouvert aux opportunités</li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="competences"><div class="wrap">
+  <h2>Compétences</h2>
+  <div class="skills">
+    <div><h3>Langages</h3><div class="tags"><span>C#</span><span>Java</span><span>PHP</span><span>JavaScript</span><span>TypeScript</span></div></div>
+    <div><h3>Frameworks</h3><div class="tags"><span>ASP.NET Core (MVC, Web API)</span><span>Entity Framework Core</span><span>Angular</span><span>React</span></div></div>
+    <div><h3>Architecture</h3><div class="tags"><span>Microservices</span><span>Clean Architecture</span><span>CQRS</span><span>MediatR</span><span>API Gateway</span></div></div>
+    <div><h3>Sécurité</h3><div class="tags"><span>JWT</span><span>OAuth 2.0</span><span>OpenID Connect</span><span>IdentityServer</span><span>Keycloak</span><span>HTTPS</span></div></div>
+    <div><h3>Communication</h3><div class="tags"><span>REST</span><span>SOAP</span><span>GraphQL</span><span>RabbitMQ</span></div></div>
+    <div><h3>Bases de données</h3><div class="tags"><span>PostgreSQL</span><span>MySQL</span><span>SQL Server</span></div></div>
+    <div><h3>Outils</h3><div class="tags"><span>Git</span><span>GitHub</span><span>GitLab</span><span>Docker</span><span>Docker Compose</span><span>Postman</span><span>Swagger</span><span>pgAdmin</span><span>Visual Studio 2022</span><span>VS Code</span></div></div>
+    <div><h3>Méthodes</h3><div class="tags"><span>POO</span><span>MVC</span><span>SOLID</span><span>Scrum / Agile</span><span>CI/CD</span><span>HTML5 / CSS3</span></div></div>
+  </div>
+</div></section>
+
+<section id="projets"><div class="wrap">
+  <h2>Projets</h2>
+  <p class="intro">Des projets de démonstration conçus pour montrer ma façon de travailler, avec le code ouvert sur GitHub.</p>
+
+  <article class="project">
+    <div>
+      <span class="status">Projet de démonstration · en cours</span>
+      <h3>OptiRendez-vous</h3>
+      <p>Application de gestion pour un opticien : les clients choisissent leurs lunettes et réservent un examen de la vue, l'opticien suit ses rendez-vous et son stock.</p>
+      <ul>
+        <li>Catalogue de lunettes avec filtres (forme, marque, prix)</li>
+        <li>Prise de rendez-vous en ligne</li>
+        <li>Espace client avec historique des ordonnances</li>
+        <li>Tableau de bord opticien et rappels de contrôle</li>
+      </ul>
+      <div class="tags"><span>Angular</span><span>ASP.NET Core</span><span>EF Core</span><span>SQL Server</span><span>JWT</span></div>
+      <p><a href="https://github.com/Oussamaslimanii30">Mon GitHub</a></p>
+    </div>
+    <div class="mock" role="img" aria-label="Aperçu schématique du catalogue">
+      <div class="bar"></div>
+      <div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </article>
+
+  <article class="project soon">
+    <div>
+      <span class="status">À venir</span>
+      <h3>Projet suivant</h3>
+      <p>Remplace cette carte par ton deuxième projet : tableau de bord, boutique en ligne ou application de réservation.</p>
+    </div>
+  </article>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <h2>Contact</h2>
+  <p class="intro">Je cherche un poste de développeur full-stack. Écris-moi pour discuter d'un projet ou d'une offre.</p>
+  <div class="contact">
+    <a class="btn primary" href="mailto:oussamaslimani458@gmail.com">Envoyer un email</a>
+    <a class="btn ghost" href="https://linkedin.com/in/oussama-slimani-93983b2ba">LinkedIn</a>
+    <a class="btn ghost" href="https://github.com/Oussamaslimanii30">GitHub</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© 2026 Oussama Slimani · Développeur Full-Stack .NET / Angular</div></footer>
+</body>
+</html>
